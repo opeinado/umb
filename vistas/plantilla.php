@@ -19,7 +19,7 @@
 
         <link rel="stylesheet" href="vistas/assets/dist/css/index.css">
 
-        <!-- CSS PARA DATATABLES -->    
+        <!-- CSS PARA DATATABLES   -->  
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 
     <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->

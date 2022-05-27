@@ -64,7 +64,7 @@
                     <!-- Message Start #1-->
                     <div class="media">
                         
-                        <img src="vistas/assets/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <img src="vistas/assets/dist/img/user.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                         
                         <div class="media-body">
                             

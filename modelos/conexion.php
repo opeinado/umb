@@ -10,19 +10,7 @@ class Conexion {
         array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-
-        if ($con)
-        {
-            echo "conectado";
-        }
-        else {
-            echo "no conectado";
-        }
+        return $con;
     }
 
 }
-
-$conexion = new Conexion();
-$conexion -> conectar();
-
-?>
