@@ -3,17 +3,17 @@
 require_once "../controladores/categorias.controlador.php";
 require_once "../modelos/categorias.modelo.php";
 
-class ajaxCategoria {
+class ajaxCategorias {
     public function MostrarCategorias() {
         
-        $respuesta = ControladorCategorias::ctrMostrarCategoria();
+        $respuesta = ControladorCategorias::ctrMostrarCategorias();
 
-        echo json_decode($respuesta);
+        echo json_encode($respuesta);
 
 
     }
 }
-$respuesta = new ajaxCategoria();
+$respuesta = new ajaxCategorias();
 $respuesta -> MostrarCategorias();
 
 ?>

@@ -1,7 +1,7 @@
 <?php 
 require_once "conexion.php";
 
-class ModeloCategoria{
+class ModeloCategorias{
 
     static public function mdlMostrarCategorias(){
         $stmt = Conexion::conectar()-> prepare ("SELECT IDusuario,categoria,nombre,codigo,correo,contraseña,estado,'X' as acciones FROM usuarios");
@@ -12,6 +12,5 @@ class ModeloCategoria{
     }
 }
 
-$categorias = ModeloCategoria::mdlMostrarCategorias();
-print_r($categorias);
+
 ?>

@@ -71,7 +71,7 @@
             "ajax": {
                 "url": "ajax/categorias.ajax.php",
                 "type": "POST",
-                "dataSrc": "",
+                "dataSrc": ""
             },
 
 
@@ -257,25 +257,45 @@
             },
             "columnDefs":[
                 {
-                    "targets": 8,
+	            		"targets": 6,
+	            		"sortable": false,
+	            		"render": function (data, type, full, meta){
+
+	            			if(data == 1){
+								return "<div class='bg-primary color-palette text-center'>ACTIVO</div> " 
+	            			}else{
+								return "<div class='bg-danger color-palette text-center'>INACTIVO</div> " 
+	            			}
+	            			
+	            		}
+	            	},
+
+
+
+                {
+                    "targets": 7,
                     "sortable": false,
                     "render": function (data, type, full, meta){
-                        return "<button type= 'button' class= 'btn btn-primary btnEditar btn-sm' data-toggle='modal' data-target= '#modal-lg'>"
-                        "<i class= 'fas fa-pencil-alt'></i></button>" +
-                        
-                        "<button type= 'button' class= 'btn btn-danger btn-sm btnEliminar><i class= 'fas fa-trash'> </i></button>" ;
-                        
+                        return "<center>" +
+	                                    "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-categoria'> " +
+	            						  "<i class='fas fa-pencil-alt'></i> " +
+	            					    "</button> " + 
+	            					    "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
+	            						  "<i class='fas fa-trash'> </i> " +
+	            					    "</button>" +
+	                                "</center>"; 
                     }
                 }
             ],
             "columns":[
-                {"data":"IDusurio"},
+                {"data":"IDusuario"},
                 {"data":"categoria"},
                 {"data":"nombre"},
                 {"data":"codigo"},
                 {"data":"correo"},
                 {"data":"contraseña"},
                 {"data":"estado"},
+                {"data":"acciones"}
                 
             
 

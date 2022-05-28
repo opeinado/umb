@@ -1,8 +1,8 @@
 <?php
 
 class ControladorCategorias {
-    static public function ctrMostrarCategoria (){
-        $respuesta = ModeloCategoria :: mdlMostrarCategorias();
+    static public function ctrMostrarCategorias (){
+        $respuesta = ModeloCategorias :: mdlMostrarCategorias();
 
         return $respuesta;
 
