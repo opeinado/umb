@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Administrar Categorias</h1>
+                <h1>Administrar Laboratorios</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"> <a href="/index.php">Inicio</a></li>
-                    <li class="breadcrumb-item active">Gestot Categorias</li>
+                    <li class="breadcrumb-item active">Gestor Laboratorio</li>
                 </ol>
             </div>
         </div>
@@ -20,21 +20,17 @@
 <!-- CONTENT -->
 <section class="content">
     <div class="container-fluid">
-        <div class="btn-agregar-categoria">
-            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-usuarios" data-dismiss="modal"> <i class="fas 
-            fa-plus-square"></i> Agregar Usuario</button>
+        <div class="btn-agregar-laboratorio">
+            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="·modal-actualizar-laboratorio" data-dismiss="modal"> <i class="fas 
+            fa-plus-square"></i> Agregar Laboratorio</button>
         </div>
 
-        <table id="tablaCategorias" class="table table-striped table-bordered nowrap" style="width:100%;">
+        <table id="tablaLaboratorio" class="table table-striped table-bordered nowrap" style="width:100%;">
 
             <thead class="btn-info">
                 <tr>
                     <td style="width:5%;">Id</td>
-                    <td>Categoria</td>
-                    <td>nombre</td>
-                    <td>codigo</td>
-                    <td>correo</td>
-                    <td>contraseña</td>
+                    <td>Laboratorio</td>
                     <td>estado</td>
                     <td>acciones</td>
 
@@ -42,74 +38,13 @@
             </thead>
             <tbody>
 
+
             </tbody>
 
         </table>
     </div>
 
 </section>
-<!-- ./CONTENT -->
-
-
-<!-- VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
-<div class="modal fade" id="modal-actualizar-usuarios">
-
-    <div class="modal-dialog modal-lg">
-
-        <div class="modal-content">
-
-            <!-- ============================================================
-            =MODAL HEADER
-            ===============================================================-->
-            <div class="modal-header bg-info">
-                <h4 class="modal-title">Gestionar Equipos</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <!-- ============================================================
-            =MODAL BODY
-            ===============================================================-->
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-4">
-
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-            </div>
-
-
-               
-            </div>
-            <!-- ============================================================
-            =MODAL FOOTER
-            ===============================================================-->
-            <div class="modal-footer justify-content-end">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-<!-- ./ VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
 
 <script>
     $(document).ready(function() {
@@ -117,7 +52,7 @@
 
 
         //   $.ajax({
-        //    url: "ajax/categorias.ajax.php",
+        //    url: "ajax/formulario.ajax.php",
         //    method: "GET",
         //    cache: false,
         //    contentType: false,
@@ -128,9 +63,9 @@
 
         //       })
 
-        var table = $("#tablaCategorias").DataTable({
+        var table = $("#tablaLaboratorio").DataTable({
             "ajax": {
-                "url": "ajax/categorias.ajax.php",
+                "url": "ajax/laboratorio.ajax.php",
                 "type": "POST",
                 "dataSrc": ""
             },
@@ -316,63 +251,45 @@
                 },
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
             },
-            "columnDefs": [{
-                    "targets": 6,
-                    "sortable": false,
-                    "render": function(data, type, full, meta) {
+            "columnDefs":[
+                {
+	            		"targets": 2,
+	            		"sortable": false,
+	            		"render": function (data, type, full, meta){
 
-                        if (data == 1) {
-                            return "<div class='bg-primary color-palette text-center'>ACTIVO</div> "
-                        } else {
-                            return "<div class='bg-danger color-palette text-center'>INACTIVO</div> "
-                        }
-
-                    }
-                },
+	            			if(data == 1){
+								return "<div class='bg-primary color-palette text-center'>ACTIVO</div> " 
+	            			}else{
+								return "<div class='bg-danger color-palette text-center'>INACTIVO</div> " 
+	            			}
+	            			
+	            		}
+	            	},
 
 
 
                 {
-                    "targets": 7,
+                    "targets": 3,
                     "sortable": false,
-                    "render": function(data, type, full, meta) {
+                    "render": function (data, type, full, meta){
                         return "<center>" +
-                            "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-categoria'> " +
-                            "<i class='fas fa-pencil-alt'></i> " +
-                            "</button> " +
-                            "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
-                            "<i class='fas fa-trash'> </i> " +
-                            "</button>" +
-                            "</center>";
+	                                    "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-laboratorio'> " +
+	            						  "<i class='fas fa-pencil-alt'></i> " +
+	            					    "</button> " + 
+	            					    "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
+	            						  "<i class='fas fa-trash'> </i> " +
+	            					    "</button>" +
+	                                "</center>"; 
                     }
                 }
             ],
-            "columns": [{
-                    "data": "IDusuario"
-                },
-                {
-                    "data": "categoria"
-                },
-                {
-                    "data": "nombre"
-                },
-                {
-                    "data": "codigo"
-                },
-                {
-                    "data": "correo"
-                },
-                {
-                    "data": "contraseña"
-                },
-                {
-                    "data": "estado"
-                },
-                {
-                    "data": "acciones"
-                }
-
-
+            "columns":[
+                {"data":"IDlaboratorio"},
+                {"data":"laboratorio"},
+                {"data":"estado"},
+                {"data":"acciones"}
+                
+            
 
             ]
         });

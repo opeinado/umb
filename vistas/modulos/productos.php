@@ -294,7 +294,7 @@
                 }
             ],
             "columns":[
-                {"data":"IDlaboratorio"},
+                {"data":"IDequipo"},
                 {"data":"item"},
                 {"data":"cant"},
                 {"data":"placa"},

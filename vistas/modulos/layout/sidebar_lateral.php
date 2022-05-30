@@ -46,7 +46,14 @@
                         <li class="nav-item">
                             <a onclick="cargarContenido('content-wrapper','vistas/modulos/productos.php')" class="nav-link" style="cursor: pointer;">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Productos</p>
+                                <p>Registrar Equipo</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a onclick="cargarContenido('content-wrapper','vistas/modulos/laboratorio.php')" class="nav-link" style="cursor: pointer;">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Registrar Laboratorio</p>
                             </a>
                         </li>
 
