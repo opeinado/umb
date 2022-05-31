@@ -21,40 +21,164 @@
 <section class="content">
     <div class="container-fluid">
         <div class="btn-agregar-formulario">
-            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="·modal-actualizar-formulario" data-dismiss="modal"> <i class="fas 
+            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-formulario" data-dismiss="modal"> <i class="fas 
             fa-plus-square"></i> Agregar Equipo</button>
         </div>
 
-        <table id="tablaFormulario" class="table table-striped table-bordered nowrap" style="width:100%;">
-
-            <thead class="btn-info">
-                <tr>
-                    <td style="width:5%;">Id</td>
-                    <td>item</td>
-                    <td>cant</td>
-                    <td>placa</td>
-                    <td>descripcion</td>
-                    <td>marca</td>
-                    <td>modelo</td>
-                    <td>serie</td>
-                    <td>ubicacion</td>
-                    <td>estado</td>
-                    <td>observacion</td>
-                    <td>Vunitario</td>
-                    <td>Vtotal</td>
-                    <td>acciones</td>
-
-                </tr>
-            </thead>
-            <tbody>
-
-
-            </tbody>
-
-        </table>
+        <div class="table-responsive" style="padding: 18px;">
+            <table id="tablaFormulario" class="table table-striped table-bordered nowrap" style="width:100%;">
+                <thead class="btn-info">
+                    <tr>
+                        <td style="width:5%;">Id</td>
+                        <td>Laboratorio</td>
+                        <td>item</td>
+                        <td>cant</td>
+                        <td>placa</td>
+                        <td>descripcion</td>
+                        <td>marca</td>
+                        <td>modelo</td>
+                        <td>serie</td>
+                        <td>ubicacion</td>
+                        <td>estado</td>
+                        <td>observacion</td>
+                        <td>Vunitario</td>
+                        <td>Vtotal</td>
+                        <td>acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>
+<!-- ./CONTENT -->
+
+
+<!-- VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
+<div class="modal fade" id="modal-actualizar-formulario">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <!-- ============================================================
+            =MODAL HEADER
+            ===============================================================-->
+            <div class="modal-header bg-info">
+                <h4 class="modal-title">Gestionar Equipos</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- ============================================================
+            =MODAL BODY
+            ===============================================================-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texLaborartorio">Laboratorio</label>
+                            <input type="text" class="form-control" name="item" id="texLaboratorio" placeholder="Ingrese el Laboratorio">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texItem">Item</label>
+                            <input type="text" class="form-control" name="item" id="texItem" placeholder="Ingrese el Item">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texCantidad">Cantidad</label>
+                            <input type="text" class="form-control" name="cantidad" id="texCantidad" placeholder="Ingrese la Cantida">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texPlaca">Placa</label>
+                            <input type="text" class="form-control" name="placa" id="texPlaca" placeholder="Ingrese la placa">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texDescripcion">Descripcion</label>
+                            <input type="text" class="form-control" name="descripcion" id="texDescripcion" placeholder="Ingrese la Descripcion">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texMarca">Marca</label>
+                            <input type="text" class="form-control" name="marca" id="texMarca" placeholder="Ingrese la marca">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texModelo">Modelo</label>
+                            <input type="text" class="form-control" name="modelo" id="texModelo" placeholder="Ingrese la Modelo">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texSerie">Serie</label>
+                            <input type="text" class="form-control" name="serie" id="texSerie" placeholder="Ingrese la serie">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texUbicacion">Ubicacion</label>
+                            <input type="text" class="form-control" name="serie" id="texUbicacion" placeholder="Ingrese la Ubicacion ">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texObservacion">Observacion</label>
+                            <input type="text" class="form-control" name="serie" id="texObservacion" placeholder="Ingrese la Observacion ">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texVunitario">Valor de Unidad</label>
+                            <input type="text" class="form-control" name="serie" id="texVunitario" placeholder="Ingrese el valor">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="texVtotal">Valor Total</label>
+                            <input type="text" class="form-control" name="serie" id="texVunitario" placeholder="Ingrese el valor">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="ddlEstado">Estado</label>
+                            <select name="estado" id="ddlEstado" class="form-control select2bs4">
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================
+            =MODAL FOOTER
+            ===============================================================-->
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ./ VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
+
 
 <script>
     $(document).ready(function() {
@@ -261,55 +385,84 @@
                 },
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
             },
-            "columnDefs":[
-                {
-	            		"targets": 9,
-	            		"sortable": false,
-	            		"render": function (data, type, full, meta){
+            "columnDefs": [{
+                    "targets": 9,
+                    "sortable": false,
+                    "render": function(data, type, full, meta) {
 
-	            			if(data == 1){
-								return "<div class='bg-primary color-palette text-center'>ACTIVO</div> " 
-	            			}else{
-								return "<div class='bg-danger color-palette text-center'>INACTIVO</div> " 
-	            			}
-	            			
-	            		}
-	            	},
+                        if (data == 1) {
+                            return "<div class='bg-primary color-palette text-center'>ACTIVO</div> "
+                        } else {
+                            return "<div class='bg-danger color-palette text-center'>INACTIVO</div> "
+                        }
+
+                    }
+                },
 
 
 
                 {
                     "targets": 13,
                     "sortable": false,
-                    "render": function (data, type, full, meta){
+                    "render": function(data, type, full, meta) {
                         return "<center>" +
-	                                    "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-formulario'> " +
-	            						  "<i class='fas fa-pencil-alt'></i> " +
-	            					    "</button> " + 
-	            					    "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
-	            						  "<i class='fas fa-trash'> </i> " +
-	            					    "</button>" +
-	                                "</center>"; 
+                            "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-formulario'> " +
+                            "<i class='fas fa-pencil-alt'></i> " +
+                            "</button> " +
+                            "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
+                            "<i class='fas fa-trash'> </i> " +
+                            "</button>" +
+                            "</center>";
                     }
                 }
             ],
-            "columns":[
-                {"data":"IDequipo"},
-                {"data":"item"},
-                {"data":"cant"},
-                {"data":"placa"},
-                {"data":"descripcion"},
-                {"data":"marca"},
-                {"data":"modelo"},
-                {"data":"serie"},
-                {"data":"ubicacion"},
-                {"data":"estado"},
-                {"data":"observacion"},
-                {"data":"Vunitario"},
-                {"data":"Vtotal"},
-                {"data":"acciones"}
-                
-            
+            "columns": [{
+                    "data": "IDequipo"
+                },
+                {
+                    "data": "laboratorio"
+                },
+                {
+                    "data": "item"
+                },
+                {
+                    "data": "cant"
+                },
+                {
+                    "data": "placa"
+                },
+                {
+                    "data": "descripcion"
+                },
+                {
+                    "data": "marca"
+                },
+                {
+                    "data": "modelo"
+                },
+                {
+                    "data": "serie"
+                },
+                {
+                    "data": "ubicacion"
+                },
+                {
+                    "data": "estado"
+                },
+                {
+                    "data": "observacion"
+                },
+                {
+                    "data": "Vunitario"
+                },
+                {
+                    "data": "Vtotal"
+                },
+                {
+                    "data": "acciones"
+                }
+
+
 
             ]
         });

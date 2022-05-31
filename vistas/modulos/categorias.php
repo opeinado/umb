@@ -8,7 +8,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"> <a href="/index.php">Inicio</a></li>
-                    <li class="breadcrumb-item active">Gestot Categorias</li>
+                    <li class="breadcrumb-item active">Gestor Usuarios</li>
                 </ol>
             </div>
         </div>
@@ -74,27 +74,47 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="textCategoria">Categoria</label>
+                            <input type="text" class="form-control" name="categoria" id="textCategoria" placeholder="Ingrese la Categoria">
+                        </div>
 
                     </div>
                     <div class="col-sm-4">
-                        
+                        <div class="form-group">
+                            <label for="textNombre">Nombre y apellido</label>
+                            <input type="text" class="form-control" name="nombre" id="textNombre" placeholder="Ingrese el Nombre">
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        
-                    </div>
-            </div>
 
-
-               
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="textCodigo">Codigo del Usuario</label>
+                            <input type="text" class="form-control" name="codigo" id="textCodigo" placeholder="Ingrese el codigo">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="textCorreo">Correo del usuario</label>
+                            <input type="text" class="form-control" name="correo" id="textCorreo" placeholder="Ingrese el correo">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="textContraseña">Contraseña</label>
+                            <input type="text" class="form-control" name="contraseña" id="textContraseña" placeholder="Ingrese la Contraseña">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="ddlEstado">Estado</label>
+                            <select name="estado" id="ddlEstado" class="form-control select2bs4">
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- ============================================================
             =MODAL FOOTER
@@ -115,25 +135,13 @@
     $(document).ready(function() {
 
 
-
-        //   $.ajax({
-        //    url: "ajax/categorias.ajax.php",
-        //    method: "GET",
-        //    cache: false,
-        //    contentType: false,
-        //    processData: false,
-        //    success: function(respuesta) {
-        //         console.log(respuesta)
-        //             }
-
-        //       })
-
         var table = $("#tablaCategorias").DataTable({
             "ajax": {
                 "url": "ajax/categorias.ajax.php",
                 "type": "POST",
                 "dataSrc": ""
             },
+
 
 
 
@@ -376,6 +384,57 @@
 
             ]
         });
+
+
+        $("#btnGuardar").on('click', function() {
+
+            var categoria = $("#textCategoria").val(),
+                nombre = $("#textNombre").val(),
+                codigo = $("#textCodigo").val(),
+                correo = $("#textCorreo").val(),
+                contraseña = $("#textContraseña").val(),
+                estado = $("#ddlEstado").val();
+
+
+
+            var datos = new FormData();
+
+            datos.append('categoria', categoria);
+            datos.append('nombre', nombre);
+            datos.append('codigo', codigo);
+            datos.append('correo', correo);
+            datos.append('contraseña', contraseña);
+            datos.append('estado', estado);
+
+            $.ajax({
+
+                url: "ajax/categorias.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(respuesta) {
+
+                    console.log(respuesta);
+
+                    $("#modal-gestionar-categoria").modal('hide');
+
+                    table.ajax.reload(null,false);
+                    
+                    $("#textCategoria").val("");
+                    $("#textNombre").val("");
+                    $("#textCodigo").val("");
+                    $("#textCorreo").val("");
+                    $("#textContraseña").val("");
+                    $("#ddlEstado").val([1]);
+
+                  
+                }
+            });
+        })
+
+
     })
 </script>
 

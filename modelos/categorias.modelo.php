@@ -10,7 +10,23 @@ class ModeloCategorias{
         $stmt = null;
 
     }
+
+    static public function mdlRegistrarCategorias($categoria,$nombre,$codigo,$correo,$contraseña,$estado){
+                
+        $sql=("INSERT INTO usuarios(categoria,nombre,codigo,correo,contraseña,estado) VALUES (?,?,?,?,?,?)");                
+        $dataInsert = [
+            $categoria
+            ,$nombre
+            ,$codigo
+            ,$correo
+            ,$contraseña
+            ,$estado
+        ];        
+        $stmt=Conexion::conectar()->prepare($sql);
+        if($stmt->execute($dataInsert)){
+            return "la categoria se registro correctamente";
+        }else {
+            return "Error, no se pudo registrar la categoria";
+        }
+    }
 }
-
-
-?>
