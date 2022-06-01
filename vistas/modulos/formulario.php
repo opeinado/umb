@@ -150,7 +150,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="texVtotal">Valor Total</label>
-                            <input type="text" class="form-control" name="serie" id="texVunitario" placeholder="Ingrese el valor">
+                            <input type="text" class="form-control" name="serie" id="texVtotal" placeholder="Ingrese el valor">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -182,20 +182,6 @@
 
 <script>
     $(document).ready(function() {
-
-
-
-        //   $.ajax({
-        //    url: "ajax/formulario.ajax.php",
-        //    method: "GET",
-        //    cache: false,
-        //    contentType: false,
-        //    processData: false,
-        //    success: function(respuesta) {
-        //         console.log(respuesta)
-        //             }
-
-        //       })
 
         var table = $("#tablaFormulario").DataTable({
             "ajax": {
@@ -386,7 +372,7 @@
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
             },
             "columnDefs": [{
-                    "targets": 9,
+                    "targets": 10,
                     "sortable": false,
                     "render": function(data, type, full, meta) {
 
@@ -402,7 +388,7 @@
 
 
                 {
-                    "targets": 13,
+                    "targets": 14,
                     "sortable": false,
                     "render": function(data, type, full, meta) {
                         return "<center>" +
@@ -466,6 +452,78 @@
 
             ]
         });
+
+        $("#btnGuardar").on('click', function() {
+
+            var laboratorio     = $("#texLaboratorio").val(),
+                item            = $("#texItem").val(),
+                cant            = $("#texCantidad").val(),
+                placa           = $("#texPlaca").val(),
+                descripcion     = $("#texDescripcion").val(),
+                marca           = $("#texMarca").val();
+                modelo          = $("#texModelo").val();
+                serie           = $("#texSerie").val();
+                ubicacion       = $("#texUbicacion").val();
+                estado          = $("#ddlEstado").val();
+                observacion     = $("#texObservacion").val();
+                Vunitario       = $("#texVunitario").val();
+                Vtotal          = $("#texVtotal").val();
+
+
+            var datos = new FormData();
+
+            datos.append('laboratorio', laboratorio);
+            datos.append('item', item);
+            datos.append('cant', cant);
+            datos.append('placa', placa);
+            datos.append('descripcion', descripcion);
+            datos.append('marca', marca);
+            datos.append('modelo', modelo);
+            datos.append('serie', serie);
+            datos.append('ubicacion', ubicacion);
+            datos.append('estado', estado);
+            datos.append('observacion', observacion);
+            datos.append('Vunitario', Vunitario);
+            datos.append('Vtotal', Vtotal);
+
+
+            $.ajax({
+
+                url: "ajax/formulario.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(respuesta2) {
+
+                    console.log(respuesta2);
+
+                    $("#modal-gestionar-formulario").modal('hide');
+
+                    table.ajax.reload(null, false);
+
+                    $("#texLaboratorio").val("");
+                    $("#texItem").val("");
+                    $("#texCantidad").val("");
+                    $("#texPlaca").val("");
+                    $("#texDescripcion").val("");
+                    $("#texMarca").val("");
+                    $("#texModelo").val("");
+                    $("#texSerie").val("");
+                    $("#texUbicacion").val("");
+                    $("#ddlEstado").val([1]);
+                    $("#texObservacion").val("");
+                    $("#texVunitario").val("");
+                    $("#texVtotal").val("");
+
+
+                }
+            });
+        })
+
+
+
     })
 </script>
 

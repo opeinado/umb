@@ -134,6 +134,13 @@
 <script>
     $(document).ready(function() {
 
+        var Toast = Swal.mixin({
+                                  toast: true,
+                                  position: 'top-end',
+                                  showConfirmButton: false,
+                                  timer: 3000
+                                });
+
 
         var table = $("#tablaCategorias").DataTable({
             "ajax": {
@@ -388,50 +395,76 @@
 
         $("#btnGuardar").on('click', function() {
 
-            var categoria = $("#textCategoria").val(),
-                nombre = $("#textNombre").val(),
-                codigo = $("#textCodigo").val(),
-                correo = $("#textCorreo").val(),
-                contraseña = $("#textContraseña").val(),
-                estado = $("#ddlEstado").val();
+            Swal.fire({
+                title: '¡CONFIRMAR',
+                text: "¿ESTA SEGURO QUE DESEA REGISTRAR?",
+                icon: 'warniNg',
+                showCancelButton: true,
+                confirmButtonText: "SI, DESEO REGISTRAR",
+                cancelButtonText: "cancelar"
+            }).then((resultado) => {
+
+                if (resultado.value) {
+
+                    var categoria = $("#textCategoria").val(),
+                        nombre = $("#textNombre").val(),
+                        codigo = $("#textCodigo").val(),
+                        correo = $("#textCorreo").val(),
+                        contraseña = $("#textContraseña").val(),
+                        estado = $("#ddlEstado").val();
 
 
 
-            var datos = new FormData();
+                    var datos = new FormData();
 
-            datos.append('categoria', categoria);
-            datos.append('nombre', nombre);
-            datos.append('codigo', codigo);
-            datos.append('correo', correo);
-            datos.append('contraseña', contraseña);
-            datos.append('estado', estado);
+                    datos.append('categoria', categoria);
+                    datos.append('nombre', nombre);
+                    datos.append('codigo', codigo);
+                    datos.append('correo', correo);
+                    datos.append('contraseña', contraseña);
+                    datos.append('estado', estado);
 
-            $.ajax({
+                    $.ajax({
 
-                url: "ajax/categorias.ajax.php",
-                method: "POST",
-                data: datos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(respuesta) {
+                        url: "ajax/categorias.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(respuesta) {
 
-                    console.log(respuesta);
+                            console.log(respuesta);
 
-                    $("#modal-gestionar-categoria").modal('hide');
+                            $("#modal-gestionar-categoria").modal('hide');
 
-                    table.ajax.reload(null,false);
-                    
-                    $("#textCategoria").val("");
-                    $("#textNombre").val("");
-                    $("#textCodigo").val("");
-                    $("#textCorreo").val("");
-                    $("#textContraseña").val("");
-                    $("#ddlEstado").val([1]);
+                            table.ajax.reload(null, false);
 
-                  
+                            $("#textCategoria").val("");
+                            $("#textNombre").val("");
+                            $("#textCodigo").val("");
+                            $("#textCorreo").val("");
+                            $("#textContraseña").val("");
+                            $("#ddlEstado").val([1]);
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: respuesta
+                            })
+
+
+                        }
+                    });
+
+                } else if (result.isDenied) {
+
                 }
             });
+
+
+
+
+
         })
 
 
