@@ -34,16 +34,28 @@ class ajaxFormulario
     {
 
         $respuesta2 = ControladorFormulario::ctrRegistrarFormulario($this->laboratorio, $this->item, $this->cant, $this->placa, $this->descripcion, $this->marca, $this->modelo, $this->serie, $this->ubicacion, $this->estado, $this->observacion, $this->Vunitario, $this->Vtotal);
-        echo json_encode($respuesta2);
+        echo json_encode($respuesta2,JSON_UNESCAPED_UNICODE);
     }
+
+    public function eliminarFormulario()
+    {
+        $respuesta2 = ControladorFormulario::ctrEliminarFormulario($this->IDequipo);
+        echo json_encode($respuesta2, JSON_UNESCAPED_UNICODE);
+    }
+
+
+
+
+
+
 }
 
-if (!isset($_POST["laboratorio"])) {
+if (!isset($_POST["accion"])) {
 
     $respuesta2 = new ajaxFormulario();
     $respuesta2->MostrarFormulario();
 }else {
-
+    if ($_POST["accion"] == "registrar") {
     $insertar = new ajaxFormulario();
     $insertar->laboratorio = $_POST["laboratorio"];
     $insertar->item = $_POST["item"];
@@ -59,6 +71,12 @@ if (!isset($_POST["laboratorio"])) {
     $insertar->Vunitario = $_POST["Vunitario"];
     $insertar->Vtotal = $_POST["Vtotal"];
     $insertar->registrarFormulario();
+    }
+    if ($_POST["accion"] == "eliminar"){
+        $eliminar = new ajaxFormulario();
+        $eliminar->IDequipo = $_POST["IDequipo"];
+        $eliminar->eliminarFormulario();
 
+    }
     
 }

@@ -14,4 +14,11 @@ class ControladorFormulario {
         return $respuesta2;
        
     }
+
+    static public function ctrEliminarFormulario($IDequipo){
+
+        $respuesta2 = ModeloFormulario :: mdlEliminarFormulario($IDequipo);
+        return $respuesta2;
+       
+    }
 }

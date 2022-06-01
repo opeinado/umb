@@ -16,6 +16,19 @@ class ControladorCategorias {
        
     }
 
+    static public function ctrEliminarCategoria($IDusuario){
+
+        $respuesta = ModeloCategorias :: mdlEliminarCategoria($IDusuario);
+        return $respuesta;
+       
+    }
+
+    static public function ctrActualizarCategoria($IDusuario, $categoria, $nombre, $codigo, $correo, $contraseña, $estado)
+    {
+        $respuesta = ModeloCategorias :: mdlActualizarCategoria($IDusuario,$categoria,$nombre,$codigo,$correo,$contraseña,$estado);
+        return $respuesta;
+    }
+
 
 
 

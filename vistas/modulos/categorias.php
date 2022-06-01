@@ -20,14 +20,13 @@
 <!-- CONTENT -->
 <section class="content">
     <div class="container-fluid">
-        <div class="btn-agregar-categoria">
-            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-usuarios" data-dismiss="modal"> <i class="fas 
-            fa-plus-square"></i> Agregar Usuario</button>
+        <div class="btn-agregar-categoria btnAgregar">
+            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-gestionar-usuarios" data-dismiss="modal"> <i class="fas fa-plus-square"></i> Agregar Usuario</button>
         </div>
 
         <table id="tablaCategorias" class="table table-striped table-bordered nowrap" style="width:100%;">
 
-            <thead class="btn-info">
+            <thead class="bg-info">
                 <tr>
                     <td style="width:5%;">Id</td>
                     <td>Categoria</td>
@@ -52,7 +51,7 @@
 
 
 <!-- VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
-<div class="modal fade" id="modal-actualizar-usuarios">
+<div class="modal fade" id="modal-gestionar-usuarios">
 
     <div class="modal-dialog modal-lg">
 
@@ -75,6 +74,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
+                            <input type="hidden" id="idcategoria" name="categoria" value="">
                             <label for="textCategoria">Categoria</label>
                             <input type="text" class="form-control" name="categoria" id="textCategoria" placeholder="Ingrese la Categoria">
                         </div>
@@ -134,12 +134,14 @@
 <script>
     $(document).ready(function() {
 
+        var accion = "";
+
         var Toast = Swal.mixin({
-                                  toast: true,
-                                  position: 'top-end',
-                                  showConfirmButton: false,
-                                  timer: 3000
-                                });
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
 
 
         var table = $("#tablaCategorias").DataTable({
@@ -149,9 +151,64 @@
                 "dataSrc": ""
             },
 
+            
+            "columnDefs": [{
+                    "targets": 6,
+                    "sortable": false,
+                    "render": function(data, type, full, meta) {
+
+                        if (data == 1) {
+                            return "<div class='bg-primary color-palette text-center'>ACTIVO</div> "
+                        } else {
+                            return "<div class='bg-danger color-palette text-center'>INACTIVO</div> "
+                        }
+
+                    }
+                },
 
 
 
+                {
+                    "targets": 7,
+                    "sortable": false,
+                    "render": function(data, type, full, meta) {
+                        return "<center>" +
+                            
+                            "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
+                            "<i class='fas fa-trash'> </i> " +
+                            "</button>" +
+                            "</center>";
+                    }
+                }
+            ],
+            "columns": [{
+                    "data": "IDusuario"
+                },
+                {
+                    "data": "categoria"
+                },
+                {
+                    "data": "nombre"
+                },
+                {
+                    "data": "codigo"
+                },
+                {
+                    "data": "correo"
+                },
+                {
+                    "data": "contraseña"
+                },
+                {
+                    "data": "estado"
+                },
+                {
+                    "data": "acciones"
+                }
+
+
+
+            ],
             "language": {
                 "processing": "Procesando...",
                 "lengthMenu": "Mostrar _MENU_ registros",
@@ -331,82 +388,80 @@
                 },
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
             },
-            "columnDefs": [{
-                    "targets": 6,
-                    "sortable": false,
-                    "render": function(data, type, full, meta) {
-
-                        if (data == 1) {
-                            return "<div class='bg-primary color-palette text-center'>ACTIVO</div> "
-                        } else {
-                            return "<div class='bg-danger color-palette text-center'>INACTIVO</div> "
-                        }
-
-                    }
-                },
-
-
-
-                {
-                    "targets": 7,
-                    "sortable": false,
-                    "render": function(data, type, full, meta) {
-                        return "<center>" +
-                            "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-categoria'> " +
-                            "<i class='fas fa-pencil-alt'></i> " +
-                            "</button> " +
-                            "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
-                            "<i class='fas fa-trash'> </i> " +
-                            "</button>" +
-                            "</center>";
-                    }
-                }
-            ],
-            "columns": [{
-                    "data": "IDusuario"
-                },
-                {
-                    "data": "categoria"
-                },
-                {
-                    "data": "nombre"
-                },
-                {
-                    "data": "codigo"
-                },
-                {
-                    "data": "correo"
-                },
-                {
-                    "data": "contraseña"
-                },
-                {
-                    "data": "estado"
-                },
-                {
-                    "data": "acciones"
-                }
-
-
-
-            ]
         });
 
 
-        $("#btnGuardar").on('click', function() {
+        $(".btn-agregar-categoria").on('click', function() {
+            accion = "registrar";
+        });
 
-            Swal.fire({
-                title: '¡CONFIRMAR',
-                text: "¿ESTA SEGURO QUE DESEA REGISTRAR?",
-                icon: 'warniNg',
+        $('#tablaCategorias tbody').on('click', '.btnEliminar', function() {
+            var data = table.row($(this).parents('tr')).data();
+
+            var IDusuario = data["IDusuario"];
+
+            var datos = new FormData();
+            datos.append('accion', "eliminar")
+            datos.append('IDusuario', IDusuario)
+
+            swal.fire({
+
+                title: "¡CONFIRMACION!",
+                text: "Seguro que desea eliminar?",
+                icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: "SI, DESEO REGISTRAR",
-                cancelButtonText: "cancelar"
-            }).then((resultado) => {
+                confirmButtonText: "Sí, Eliminar",
+                cancelButtonText: "Cancelar"
+
+            }).then(resultado => {
 
                 if (resultado.value) {
 
-                    var categoria = $("#textCategoria").val(),
+                    //LLAMADO AJAX
+                    $.ajax({
+                        url: "ajax/categorias.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(respuesta) {
+
+                            console.log(respuesta);
+
+                            table.ajax.reload(null, false);
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: respuesta
+                            });
+
+                        }
+                    })
+                } else {
+                    // alert("no se modifico la categoria");
+                }
+
+            })
+
+
+        })
+
+        $('#tablaCategorias tbody').on('click', '.btnEditar', function() {
+
+            var data = table.row($(this).parents('tr')).data();
+            accion = "actualizar";
+
+        
+            $("#txtCategoria").val(data["categoria"]);
+
+        })
+
+        // GUARDAR LA INFORMACION DE CATEGORIA DESDE LA VENTANA MODAL
+
+        $("#btnGuardar").on('click', function() {
+
+            var categoria = $("#textCategoria").val(),
                         nombre = $("#textNombre").val(),
                         codigo = $("#textCodigo").val(),
                         correo = $("#textCorreo").val(),
@@ -423,6 +478,23 @@
                     datos.append('correo', correo);
                     datos.append('contraseña', contraseña);
                     datos.append('estado', estado);
+                    datos.append('accion', accion);
+
+
+
+
+            Swal.fire({
+                title: '¡CONFIRMAR',
+                text: "¿ESTA SEGURO QUE DESEA REGISTRAR?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "SI, DESEO REGISTRAR",
+                cancelButtonText: "cancelar"
+            }).then((resultado) => {
+
+                if (resultado.value) {
+
+                    
 
                     $.ajax({
 
@@ -434,7 +506,7 @@
                         processData: false,
                         success: function(respuesta) {
 
-                            console.log(respuesta);
+                            //console.log(respuesta);
 
                             $("#modal-gestionar-categoria").modal('hide');
 
@@ -456,7 +528,7 @@
                         }
                     });
 
-                } else if (result.isDenied) {
+                } else {
 
                 }
             });

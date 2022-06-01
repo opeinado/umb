@@ -20,14 +20,14 @@
 <!-- CONTENT -->
 <section class="content">
     <div class="container-fluid">
-        <div class="btn-agregar-formulario">
+        <div class="btn-agregar-formulario btnAgregar">
             <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-formulario" data-dismiss="modal"> <i class="fas 
             fa-plus-square"></i> Agregar Equipo</button>
         </div>
 
         <div class="table-responsive" style="padding: 18px;">
             <table id="tablaFormulario" class="table table-striped table-bordered nowrap" style="width:100%;">
-                <thead class="btn-info">
+                <thead class="bg-info">
                     <tr>
                         <td style="width:5%;">Id</td>
                         <td>Laboratorio</td>
@@ -57,7 +57,7 @@
 
 
 <!-- VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
-<div class="modal fade" id="modal-actualizar-formulario">
+<div class="modal fade" id="modal-gestianar-formulario">
 
     <div class="modal-dialog modal-lg">
 
@@ -80,6 +80,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
+                            <input type="hidden" id="idcategoria" name="categoria" value="">
                             <label for="texLaborartorio">Laboratorio</label>
                             <input type="text" class="form-control" name="item" id="texLaboratorio" placeholder="Ingrese el Laboratorio">
                         </div>
@@ -183,15 +184,21 @@
 <script>
     $(document).ready(function() {
 
+        var accion = "";
+
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
         var table = $("#tablaFormulario").DataTable({
             "ajax": {
                 "url": "ajax/formulario.ajax.php",
                 "type": "POST",
                 "dataSrc": ""
             },
-
-
-
             "language": {
                 "processing": "Procesando...",
                 "lengthMenu": "Mostrar _MENU_ registros",
@@ -453,21 +460,81 @@
             ]
         });
 
+        $(".btn-agregar-Formulario").on('click', function() {
+            accion = "registrar";
+        });
+
+        $('#tablaFormulario tbody').on('click', '.btnEliminar', function() {
+            var data = table.row($(this).parents('tr')).data();
+
+            var IDequipo = data["IDequipo"];
+
+            var datos = new FormData();
+            datos.append('accion', "eliminar")
+            datos.append('IDequipo', IDequipo)
+
+            swal.fire({
+
+                title: "¡CONFIRMACION!",
+                text: "Seguro que desea eliminar?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "Sí, Eliminar",
+                cancelButtonText: "Cancelar"
+
+            }).then(resultado => {
+
+                if (resultado.value) {
+
+                    //LLAMADO AJAX
+                    $.ajax({
+                        url: "ajax/formulario.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(respuesta2) {
+
+                            console.log(respuesta2);
+
+                            table.ajax.reload(null, false);
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: respuesta2
+                            });
+
+                        }
+                    })
+                } else {
+                    // alert("no se modifico la categoria");
+                }
+
+            })
+
+
+        })
+
+
+        // GUARDAR LA INFORMACION DE CATEGORIA DESDE LA VENTANA MODAL
+
         $("#btnGuardar").on('click', function() {
 
-            var laboratorio     = $("#texLaboratorio").val(),
-                item            = $("#texItem").val(),
-                cant            = $("#texCantidad").val(),
-                placa           = $("#texPlaca").val(),
-                descripcion     = $("#texDescripcion").val(),
-                marca           = $("#texMarca").val();
-                modelo          = $("#texModelo").val();
-                serie           = $("#texSerie").val();
-                ubicacion       = $("#texUbicacion").val();
-                estado          = $("#ddlEstado").val();
-                observacion     = $("#texObservacion").val();
-                Vunitario       = $("#texVunitario").val();
-                Vtotal          = $("#texVtotal").val();
+            var laboratorio = $("#texLaboratorio").val(),
+
+                item = $("#texItem").val(),
+                cant = $("#texCantidad").val(),
+                placa = $("#texPlaca").val(),
+                descripcion = $("#texDescripcion").val(),
+                marca = $("#texMarca").val();
+                modelo = $("#texModelo").val();
+                serie = $("#texSerie").val();
+                ubicacion = $("#texUbicacion").val();
+                estado = $("#ddlEstado").val();
+                observacion = $("#texObservacion").val();
+                Vunitario = $("#texVunitario").val();
+                Vtotal = $("#texVtotal").val();
 
 
             var datos = new FormData();
@@ -487,42 +554,67 @@
             datos.append('Vtotal', Vtotal);
 
 
-            $.ajax({
+            Swal.fire({
+                title: '¡CONFIRMAR',
+                text: "¿ESTA SEGURO QUE DESEA REGISTRAR?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "SI, DESEO REGISTRAR",
+                cancelButtonText: "cancelar"
+            }).then((resultado) => {
 
-                url: "ajax/formulario.ajax.php",
-                method: "POST",
-                data: datos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(respuesta2) {
+                if (resultado.value) {
 
-                    console.log(respuesta2);
 
-                    $("#modal-gestionar-formulario").modal('hide');
 
-                    table.ajax.reload(null, false);
 
-                    $("#texLaboratorio").val("");
-                    $("#texItem").val("");
-                    $("#texCantidad").val("");
-                    $("#texPlaca").val("");
-                    $("#texDescripcion").val("");
-                    $("#texMarca").val("");
-                    $("#texModelo").val("");
-                    $("#texSerie").val("");
-                    $("#texUbicacion").val("");
-                    $("#ddlEstado").val([1]);
-                    $("#texObservacion").val("");
-                    $("#texVunitario").val("");
-                    $("#texVtotal").val("");
+                    $.ajax({
 
+                        url: "ajax/formulario.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(respuesta2) {
+
+                            console.log(respuesta2);
+
+                            $("#modal-gestionar-formulario").modal('hide');
+
+                            table.ajax.reload(null, false);
+
+                            $("#texLaboratorio").val("");
+                            $("#texItem").val("");
+                            $("#texCantidad").val("");
+                            $("#texPlaca").val("");
+                            $("#texDescripcion").val("");
+                            $("#texMarca").val("");
+                            $("#texModelo").val("");
+                            $("#texSerie").val("");
+                            $("#texUbicacion").val("");
+                            $("#ddlEstado").val([1]);
+                            $("#texObservacion").val("");
+                            $("#texVunitario").val("");
+                            $("#texVtotal").val("");
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: 2
+                            })
+
+
+                        }
+                    });
+
+                } else {
 
                 }
             });
+
+
+
         })
-
-
 
     })
 </script>
