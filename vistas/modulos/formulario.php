@@ -398,9 +398,6 @@
                     "sortable": false,
                     "render": function(data, type, full, meta) {
                         return "<center>" +
-                            "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-gestionar-formulario'> " +
-                            "<i class='fas fa-pencil-alt'></i> " +
-                            "</button> " +
                             "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " +
                             "<i class='fas fa-trash'> </i> " +
                             "</button>" +
