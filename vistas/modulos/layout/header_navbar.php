@@ -49,7 +49,7 @@
             </div>
         </li>
 
-        <!-- Messages Dropdown Menu -->
+        <!-- Messages Dropdown Menu 
         <li class="nav-item dropdown">
             
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -61,7 +61,7 @@
             
                 <a href="#" class="dropdown-item">
                     
-                    <!-- Message Start #1-->
+                     Message Start #1
                     <div class="media">
                         
                         <img src="vistas/assets/dist/img/user.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
@@ -79,8 +79,8 @@
 
                         </div>
 
-                    </div>
-                    <!-- Message End #1-->
+                    </div> -
+                     Message End #1
 
                 </a>
 
@@ -88,7 +88,7 @@
 
                 <a href="#" class="dropdown-item">
                     
-                    <!-- Message Start #2-->
+                     Message Start #2
                     <div class="media">
                         
                         <img src="vistas/assets/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
@@ -107,14 +107,14 @@
                         </div>
 
                     </div>
-                    <!-- Message End #2-->
+                     Message End #2
 
                 </a>
 
                 <div class="dropdown-divider"></div>
 
                 <a href="#" class="dropdown-item">
-                    <!-- Message Start #3-->
+                     Message Start #3
                     <div class="media">
                     
                         <img src="vistas/assets/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
@@ -132,7 +132,7 @@
 
                         </div>
                     </div>
-                    <!-- Message End #3-->
+                     Message End #3
                 </a>
             
                 <div class="dropdown-divider"></div>
@@ -142,7 +142,7 @@
             </div>
         </li>
 
-        <!-- Notifications Dropdown Menu -->
+         Notifications Dropdown Menu 
         <li class="nav-item dropdown">
             
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -182,6 +182,7 @@
             </div>
 
         </li>
+        -->
 
     </ul>
 
