@@ -21,8 +21,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="btn-agregar-formulario btnAgregar">
-            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-formulario" data-dismiss="modal"> <i class="fas 
-            fa-plus-square"></i> Agregar Equipo</button>
+            <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-gestionar-formulario" data-dismiss="modal"> <i class="fas fa-plus-square"></i> Agregar Equipo</button>
         </div>
 
         <div class="table-responsive" style="padding: 18px;">
@@ -57,7 +56,7 @@
 
 
 <!-- VENTANA MODAL PARA REGISTRO Y ACTUALIZACION -->
-<div class="modal fade" id="modal-gestianar-formulario">
+<div class="modal fade" id="modal-gestionar-formulario">
 
     <div class="modal-dialog modal-lg">
 

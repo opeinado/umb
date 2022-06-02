@@ -16,7 +16,7 @@
                 <img src="vistas/assets/dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Luis Lozano</a>
+                <a href="#" class="d-block">Bienvenido</a>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                      <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                          Gestor Tienda
+                          Gestor de registros
                           <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -65,7 +65,7 @@
 
             <ul class="nav nav-pills nav-sidebar nav_profile">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="../../../../umb/Login/IndexLogin.php" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>                        
                         <p>
                             Cerrar Sesion
